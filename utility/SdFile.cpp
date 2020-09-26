@@ -258,11 +258,12 @@ uint8_t SdFile::make83Name(const char* str, uint8_t* name) {
       i = 8;   // place for extension
     } else {
       // illegal FAT characters
-      uint8_t b;
 #if defined(__AVR__)
+      uint8_t b;
       PGM_P p = PSTR("|<>^+=?/[];,*\"\\");
       while ((b = pgm_read_byte(p++))) if (b == c) return false;
 #elif defined(__arm__)
+      uint8_t b;
       const uint8_t valid[] = "|<>^+=?/[];,*\"\\";
       const uint8_t *p = valid;
       while ((b = *p++)) if (b == c) return false;
